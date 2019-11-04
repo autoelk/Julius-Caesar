@@ -66,5 +66,11 @@ function Event:Choose(choice)
   if pop == 100 or pow == 100 or mon == 100 then
     gamestate = "lost"
     cur = 2
+    events[2].q = "Then fall, Caesar!"
+  end
+  if pop == 0 or pow == 0 or mon == 0 then
+    gamestate = "start"
+    cur = 2
+    events[2].q = "Caesar fades to obsurity"
   end
 end

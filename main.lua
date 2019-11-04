@@ -19,27 +19,31 @@ function love.load()
   setup()
   gamestate = "start"
   cur = 1
-  length = 3 + 6
+  length = 3 + 11
   events = {}
   --  What is now amiss\nThat Caesar and his Senate must redress?
   table.insert(events, Event:Create{n = "Julius Caesar", q = "by Luke Tao", c1 = "Play", c2 = "Quit", pop1 = 0, pow1 = 0, mon1 = 0, pop2 = 0, pow2 = 0, mon2 = 0})
   table.insert(events, Event:Create{n = "Game Over", q = "Then fall, Caesar!", c1 = "Retry", c2 = "Quit", pop1 = 0, pow1 = 0, mon1 = 0, pop2 = 0, pow2 = 0, mon2 = 0})
   table.insert(events, Event:Create{n = "You Win", q = "Caesar Reigns", c1 = "Replay", c2 = "Quit", pop1 = 0, pow1 = 0, mon1 = 0, pop2 = 0, pow2 = 0, mon2 = 0})
 
+  table.insert(events, Event:Create{n = "", q = "Redistribute land to the poor?", c1 = "Yes", c2 = "No", pop1 = 10, pow1 = 0, mon1 = 25, pop2 = -10, pow2 = 0, mon2 = -25})
+  table.insert(events, Event:Create{n = "Conquest of Gaul", q = "Invade Gaul?", c1 = "Yes", c2 = "No", pop1 = 10, pow1 = 10, mon1 = 25, pop2 = -10, pow2 = -10, mon2 = -25})
+  table.insert(events, Event:Create{n = "Pompey", q = "Disband your army and return to Rome", c1 = "Obey", c2 = "cross the Rubicon", pop1 = -25, pow1 = -25, mon1 = 0, pop2 = 25, pow2 = 25, mon2 = 0})
+  table.insert(events, Event:Create{n = "", q = "Become dictator for life", c1 = "Yes", c2 = "No", pop1 = 25, pow1 = 25, mon1 = 25, pop2 = -25, pow2 = -25, mon2 = -25})
   table.insert(events, Event:Create{n = "Soothsayer", q = "Beware the ides of March.", c1 = "He speaks truth", c2 = "He is a dreamer", pop1 = -10, pow1 = 0, mon1 = 0, pop2 = 10, pow2 = 0, mon2 = 0})
-  table.insert(events, Event:Create{n = "Antony", q = "I present you a kingly crown (1)", c1 = "Accept", c2 = "Refuse", pop1 = 100, pow1 = 100, mon1 = 0, pop2 = 10, pow2 = 0, mon2 = 0})
-  table.insert(events, Event:Create{n = "Antony", q = "I present you a kingly crown (2)", c1 = "Accept", c2 = "Refuse", pop1 = 100, pow1 = 100, mon1 = 0, pop2 = 10, pow2 = 0, mon2 = 0})
-  table.insert(events, Event:Create{n = "Antony", q = "I present you a kingly crown (3)", c1 = "Accept", c2 = "Refuse", pop1 = 100, pow1 = 100, mon1 = 0, pop2 = 10, pow2 = 0, mon2 = 0})
-  table.insert(events, Event:Create{n = "Calpurnia", q = "You are not to set foot out of the house today", c1 = "Mark Antony shall say I am not well,", c2 = "And Caesar shall go forth.", pop1 = -25, pow1 = -25, mon1 = 0, pop2 = 100, pow2 = 0, mon2 = 0})
-  table.insert(events, Event:Create{n = "Decius", q = "And know it now, the Senate have concluded\nTo give this day a crown to mighty Caesar.", c1 = "How foolish do your fears seem now, Calpurnia!", c2 = "Decius, go tell them Caesar will not come.", pop1 = 0, pow1 = 100, mon1 = 0, pop2 = -25, pow2 = -25, mon2 = 0})
-  table.insert(events, Event:Create{n = "Artemidorus", q = "Delay not, Caesar; read [this document] instantly.", c1 = "Accept", c2 = "What, is this man mad?", pop1 = -10, pow1 = -10, mon1 = -10, pop2 = 10, pow2 = 0, mon2 = 0})
+  table.insert(events, Event:Create{n = "Antony", q = "I present you a kingly crown (1)", c1 = "Accept", c2 = "Refuse", pop1 = 100, pow1 = 100, mon1 = 100, pop2 = -10, pow2 = -10, mon2 = -10})
+  table.insert(events, Event:Create{n = "Antony", q = "I present you a kingly crown (2)", c1 = "Accept", c2 = "Refuse", pop1 = 100, pow1 = 100, mon1 = 100, pop2 = -10, pow2 = -10, mon2 = -10})
+  table.insert(events, Event:Create{n = "Antony", q = "I present you a kingly crown (3)", c1 = "Accept", c2 = "Refuse", pop1 = 100, pow1 = 100, mon1 = 100, pop2 = -10, pow2 = -10, mon2 = -10})
+  table.insert(events, Event:Create{n = "Calpurnia", q = "You are not to set foot out of the house today", c1 = "Mark Antony shall say I am not well,", c2 = "And Caesar shall go forth.", pop1 = -25, pow1 = -25, mon1 = 0, pop2 = 25, pow2 = 25, mon2 = 0})
+  table.insert(events, Event:Create{n = "Decius", q = "And know it now, the Senate have concluded\nTo give this day a crown to mighty Caesar.", c1 = "How foolish do your fears seem now, Calpurnia!", c2 = "Decius, go tell them Caesar will not come.", pop1 = 25, pow1 = 25, mon1 = 0, pop2 = -25, pow2 = -25, mon2 = 0})
+  table.insert(events, Event:Create{n = "Artemidorus", q = "Delay not, Caesar; read [this document] instantly.", c1 = "Accept", c2 = "What, is this man mad?", pop1 = -10, pow1 = -10, mon1 = -10, pop2 = 25, pow2 = 0, mon2 = 0})
 end
 
 function setup()
   gamestate = "normal"
-  pop = 0 -- popularity
-  pow = 0 -- power
-  mon = 0 -- money
+  pop = 10 -- popularity
+  pow = 10 -- power
+  mon = 10 -- money
   cur = 4
 end
 
