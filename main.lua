@@ -21,13 +21,12 @@ function love.load()
   cur = 1
   length = 3 + 11
   events = {}
-  --  What is now amiss\nThat Caesar and his Senate must redress?
   table.insert(events, Event:Create{n = "Julius Caesar", q = "by Luke Tao", c1 = "Play", c2 = "Quit", pop1 = 0, pow1 = 0, mon1 = 0, pop2 = 0, pow2 = 0, mon2 = 0})
-  table.insert(events, Event:Create{n = "Game Over", q = "Then fall, Caesar!", c1 = "Retry", c2 = "Quit", pop1 = 0, pow1 = 0, mon1 = 0, pop2 = 0, pow2 = 0, mon2 = 0})
+  table.insert(events, Event:Create{n = "Game Over", q = "", c1 = "Retry", c2 = "Quit", pop1 = 0, pow1 = 0, mon1 = 0, pop2 = 0, pow2 = 0, mon2 = 0})
   table.insert(events, Event:Create{n = "You Win", q = "Caesar Reigns", c1 = "Replay", c2 = "Quit", pop1 = 0, pow1 = 0, mon1 = 0, pop2 = 0, pow2 = 0, mon2 = 0})
 
   table.insert(events, Event:Create{n = "", q = "Redistribute land to the poor?", c1 = "Yes", c2 = "No", pop1 = 10, pow1 = 0, mon1 = 25, pop2 = -10, pow2 = 0, mon2 = -25})
-  table.insert(events, Event:Create{n = "Conquest of Gaul", q = "Invade Gaul?", c1 = "Yes", c2 = "No", pop1 = 10, pow1 = 10, mon1 = 25, pop2 = -10, pow2 = -10, mon2 = -25})
+  table.insert(events, Event:Create{n = "Conquest of Gaul", q = "Invade Gaul?", c1 = "Yes", c2 = "No", pop1 = 10, pow1 = 25, mon1 = 25, pop2 = -10, pow2 = -25, mon2 = -25})
   table.insert(events, Event:Create{n = "Pompey", q = "Disband your army and return to Rome", c1 = "Obey", c2 = "cross the Rubicon", pop1 = -25, pow1 = -25, mon1 = 0, pop2 = 25, pow2 = 25, mon2 = 0})
   table.insert(events, Event:Create{n = "", q = "Become dictator for life", c1 = "Yes", c2 = "No", pop1 = 25, pow1 = 25, mon1 = 25, pop2 = -25, pow2 = -25, mon2 = -25})
   table.insert(events, Event:Create{n = "Soothsayer", q = "Beware the ides of March.", c1 = "He speaks truth", c2 = "He is a dreamer", pop1 = -10, pow1 = 0, mon1 = 0, pop2 = 10, pow2 = 0, mon2 = 0})
@@ -37,6 +36,8 @@ function love.load()
   table.insert(events, Event:Create{n = "Calpurnia", q = "You are not to set foot out of the house today", c1 = "Mark Antony shall say I am not well,", c2 = "And Caesar shall go forth.", pop1 = -25, pow1 = -25, mon1 = 0, pop2 = 25, pow2 = 25, mon2 = 0})
   table.insert(events, Event:Create{n = "Decius", q = "And know it now, the Senate have concluded\nTo give this day a crown to mighty Caesar.", c1 = "How foolish do your fears seem now, Calpurnia!", c2 = "Decius, go tell them Caesar will not come.", pop1 = 25, pow1 = 25, mon1 = 0, pop2 = -25, pow2 = -25, mon2 = 0})
   table.insert(events, Event:Create{n = "Artemidorus", q = "Delay not, Caesar; read [this document] instantly.", c1 = "Accept", c2 = "What, is this man mad?", pop1 = -10, pow1 = -10, mon1 = -10, pop2 = 25, pow2 = 0, mon2 = 0})
+  table.insert(events, Event:Create{n = "Caesar", q = "What is now amiss\nThat Caesar and his Senate must redress?", c1 = "Continue", c2 = "Continue", pop1 = 0, pow1 = 0, mon1 = 0, pop2 = 0, pow2 = 0, mon2 = 0})
+  table.insert(events, Event:Create{n = "Metellus", q = "For the repealing of my banish'd brother?", c1 = "Caesar allows his repeal", c2 = "I must prevent thee, Cimber", pop1 = -10, pow1 = -10, mon1 = 0, pop2 = 10, pow2 = 10, mon2 = 0})
 end
 
 function setup()
