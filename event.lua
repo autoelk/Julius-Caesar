@@ -1,27 +1,22 @@
--- currently does nothing
-Event = {
-  n,
-  q,
-  c1,
-  c2,
-  -- effects of choosing 1
-  pop1,
-  pow1,
-  mon1,
-  -- effects of choosing 2
-  pop2,
-  pow2,
-  mon2,
-}
+local class = require "middleclass"
 
-function Event:Create(event)
-  local event = event or {}
-  setmetatable(event, self)
-  self.__index = self
-  return event
+Event = class('Event')
+
+function Event:initialize(name, question, choice1, choice2, pop1, pow1, mon1, pop2, pow2, mon2)
+  self.n = name
+  self.q = question
+  self.c1 = choice1
+  self.c2 = choice2
+  self.pop1 = pop1
+  self.pow1 = pow1
+  self.mon1 = mon1
+  self.pop2 = pop2
+  self.pow2 = pow2
+  self.mon2 = mon2
 end
 
-function Event:Draw()
+
+function Event:draw()
   lg.setFont(title)
   lg.printf(self.n, 0, 50, 800, "center")
   lg.setFont(normal)
@@ -74,3 +69,5 @@ function Event:Choose(choice)
     events[2].q = "Caesar fades to obsurity"
   end
 end
+
+return Event

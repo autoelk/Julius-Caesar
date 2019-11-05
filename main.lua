@@ -1,4 +1,3 @@
-local class = require "middleclass"
 require "event"
 
 function love.load()
@@ -22,30 +21,30 @@ function love.load()
   length = 3 + 19
   events = {}
   -- Menu Events
-  table.insert(events, Event:Create{n = "Julius Caesar", q = "by Luke Tao", c1 = "Play", c2 = "Quit", pop1 = 0, pow1 = 0, mon1 = 0, pop2 = 0, pow2 = 0, mon2 = 0})
-  table.insert(events, Event:Create{n = "Game Over", q = "\"...but, as he was ambitious, I slew him\"(3.2.42).", c1 = "Retry", c2 = "Quit", pop1 = 0, pow1 = 0, mon1 = 0, pop2 = 0, pow2 = 0, mon2 = 0})
-  table.insert(events, Event:Create{n = "You Win", q = "Thanks for playing", c1 = "Replay", c2 = "Quit", pop1 = 0, pow1 = 0, mon1 = 0, pop2 = 0, pow2 = 0, mon2 = 0})
+  table.insert(events, Event:new("Julius Caesar", "by Luke Tao", "Play", "Quit", 0, 0, 0, 0, 0, 0))
+  table.insert(events, Event:new("Game Over", "", "Retry", "Quit", 0, 0, 0, 0, 0, 0))
+  table.insert(events, Event:new("You Win", "Thanks for playing", "Replay", "Quit", 0, 0, 0, 0, 0, 0))
   -- Rise of Caesar
-  table.insert(events, Event:Create{n = "Pompey & Crassus", q = "Would you like to join the First Triumvirate", c1 = "Yes", c2 = "No", pop1 = 0, pow1 = 10, mon1 = -10, pop2 = 0, pow2 = -10, mon2 = 10})
-  table.insert(events, Event:Create{n = "", q = "Redistribute land to the poor?", c1 = "Yes", c2 = "No", pop1 = 10, pow1 = 0, mon1 = 10, pop2 = -10, pow2 = 0, mon2 = -10})
-  table.insert(events, Event:Create{n = "", q = "Invade Gaul?", c1 = "Yes", c2 = "No", pop1 = 10, pow1 = 10, mon1 = 10, pop2 = -10, pow2 = -10, mon2 = -10})
-  table.insert(events, Event:Create{n = "", q = "Pillage?", c1 = "Yes", c2 = "No", pop1 = -10, pow1 = 0, mon1 = 10, pop2 = 10, pow2 = 0, mon2 = -10})
-  table.insert(events, Event:Create{n = "Pompey", q = "Disband your army and return to Rome", c1 = "Obey", c2 = "cross the Rubicon", pop1 = -10, pow1 = -50, mon1 = 0, pop2 = 10, pow2 = 10, mon2 = 0})
-  table.insert(events, Event:Create{n = "", q = "Pursue Pompey to Egypt", c1 = "Yes", c2 = "No", pop1 = 10, pow1 = 10, mon1 = -10, pop2 = -10, pow2 = -10, mon2 = 10})
-  table.insert(events, Event:Create{n = "", q = "Become Dictator Perpetuus", c1 = "Yes", c2 = "No", pop1 = 10, pow1 = 10, mon1 = 10, pop2 = -10, pow2 = -10, mon2 = -10})
-  table.insert(events, Event:Create{n = "", q = "Name Quintilis after yourself", c1 = "Add July to the Calendar", c2 = "No", pop1 = -10, pow1 = 0, mon1 = 0, pop2 = -10, pow2 = 0, mon2 = 0})
-  table.insert(events, Event:Create{n = "", q = "Reform the tax system", c1 = "Yes", c2 = "No", pop1 = 10, pow1 = 0, mon1 = -10, pop2 = -10, pow2 = 0, mon2 = 10})
+  table.insert(events, Event:new( "Pompey & Crassus", "Would you like to join the First Triumvirate", "Yes", "No", 0, 10, - 10, 0, - 10, 10))
+  table.insert(events, Event:new( "", "Redistribute land to the poor?", "Yes", "No", 10, 0, 10, - 10, 0, - 10))
+  table.insert(events, Event:new( "", "Invade Gaul?", "Yes", "No", 10, 10, 10, - 10, - 10, - 10))
+  table.insert(events, Event:new( "", "Pillage?", "Yes", "No", - 10, 0, 10, 10, 0, - 10))
+  table.insert(events, Event:new( "Pompey", "Disband your army and return to Rome", "Obey", "cross the Rubicon", - 10, - 50, 0, 10, 10, 0))
+  table.insert(events, Event:new( "", "Pursue Pompey to Egypt", "Yes", "No", 10, 10, - 10, - 10, - 10, 10))
+  table.insert(events, Event:new( "", "Become Dictator Perpetuus", "Yes", "No", 10, 10, 10, - 10, - 10, - 10))
+  table.insert(events, Event:new( "", "Name Quintilis after yourself", "Add July to the Calendar", "No", - 10, 0, 0, - 10, 0, 0))
+  table.insert(events, Event:new( "", "Reform the tax system", "Yes", "No", 10, 0, - 10, - 10, 0, 10))
   -- Fall of Caesar
-  table.insert(events, Event:Create{n = "Soothsayer", q = "\"Beware the ides of March\"(1.2.3).", c1 = "He speaks truth", c2 = "\"He is a dreamer;\"(1.2.4).", pop1 = -10, pow1 = 0, mon1 = 0, pop2 = 10, pow2 = 0, mon2 = 0})
-  table.insert(events, Event:Create{n = "Antony", q = "I present you a kingly crown (1)", c1 = "Accept", c2 = "Refuse", pop1 = 100, pow1 = 100, mon1 = 100, pop2 = -10, pow2 = -10, mon2 = -5})
-  table.insert(events, Event:Create{n = "Antony", q = "I present you a kingly crown (2)", c1 = "Accept", c2 = "Refuse", pop1 = 100, pow1 = 100, mon1 = 100, pop2 = -10, pow2 = -10, mon2 = -5})
-  table.insert(events, Event:Create{n = "Antony", q = "I present you a kingly crown (3)", c1 = "Accept", c2 = "Refuse", pop1 = 100, pow1 = 100, mon1 = 100, pop2 = -10, pow2 = -10, mon2 = -5})
-  table.insert(events, Event:Create{n = "Calpurnia", q = "\"You shall not stir out of your house today\"(2.2.26)", c1 = "\"Mark Antony shall say I am not well\"(2.2.27).", c2 = "\"Yet Caesar shall go forth\"(2.2.26).", pop1 = -10, pow1 = -10, mon1 = 0, pop2 = 10, pow2 = 10, mon2 = 0})
-  table.insert(events, Event:Create{n = "Decius", q = "\"And know it now, the Senate have concluded\nTo give this day a crown to mighty Caesar\"(2.2.28).", c1 = "\"How foolish do your fears seem now...\"(2.2.28).", c2 = "\"Decius, go tell them Caesar will not come\"(2.2.27).", pop1 = 10, pow1 = 10, mon1 = 0, pop2 = -10, pow2 = -10, mon2 = 0})
-  table.insert(events, Event:Create{n = "", q = "Default on debts", c1 = "Yes", c2 = "No", pop1 = -10, pow1 = 0, mon1 = 50, pop2 = 10, pow2 = 0, mon2 = 0})
-  table.insert(events, Event:Create{n = "Artemidorus", q = "\"Delay not, Caesar; read [this document] instantly\"(3.1.33).", c1 = "Accept", c2 = "\"What, is the fellow mad?\"(3.1.33).", pop1 = -10, pow1 = -10, mon1 = -10, pop2 = 10, pow2 = 0, mon2 = 0})
-  table.insert(events, Event:Create{n = "Caesar", q = "\"What is now amiss\nThat Caesar and his Senate must redress?\"(3.1.34).", c1 = "Continue", c2 = "Continue", pop1 = 0, pow1 = 0, mon1 = 0, pop2 = 0, pow2 = 0, mon2 = 0})
-  table.insert(events, Event:Create{n = "Metellus Cimber", q = "\"For the repealing of my banish'd brother?\"(3.1.34).", c1 = "\"Caesar allows his repeal\"(3.1.34).", c2 = "I must prevent thee, Cimber", pop1 = -10, pow1 = -10, mon1 = 0, pop2 = 10, pow2 = 10, mon2 = 0})
+  table.insert(events, Event:new( "Soothsayer", "\"Beware the ides of March\"(1.2.3).", "He speaks truth", "\"He is a dreamer;\"(1.2.4).", - 10, 0, 0, 10, 0, 0))
+  table.insert(events, Event:new( "Antony", "I present you a kingly crown (1)", "Accept", "Refuse", 100, 100, 100, - 10, - 10, - 5))
+  table.insert(events, Event:new( "Antony", "I present you a kingly crown (2)", "Accept", "Refuse", 100, 100, 100, - 10, - 10, - 5))
+  table.insert(events, Event:new( "Antony", "I present you a kingly crown (3)", "Accept", "Refuse", 100, 100, 100, - 10, - 10, - 5))
+  table.insert(events, Event:new( "Calpurnia", "\"You shall not stir out of your house today\"(2.2.26)", "\"Mark Antony shall say I am not well\"(2.2.27).", "\"Yet Caesar shall go forth\"(2.2.26).", - 10, - 10, 0, 10, 10, 0))
+  table.insert(events, Event:new( "Decius", "\"And know it now, the Senate have concluded\nTo give this day a crown to mighty Caesar\"(2.2.28).", "\"How foolish do your fears seem now...\"(2.2.28).", "\"Decius, go tell them Caesar will not come\"(2.2.27).", 10, 10, 0, - 10, - 10, 0))
+  table.insert(events, Event:new( "", "Default on debts", "Yes", "No", - 10, 0, 50, 10, 0, 0))
+  table.insert(events, Event:new( "Artemidorus", "\"Delay not, Caesar; read [this document] instantly\"(3.1.33).", "Accept", "\"What, is the fellow mad?\"(3.1.33).", - 10, - 10, - 10, 10, 0, 0))
+  table.insert(events, Event:new( "Caesar", "\"What is now amiss\nThat Caesar and his Senate must redress?\"(3.1.34).", "Continue", "Continue", 0, 0, 0, 0, 0, 0))
+  table.insert(events, Event:new( "Metellus Cimber", "\"For the repealing of my banish'd brother?\"(3.1.34).", "\"Caesar allows his repeal\"(3.1.34).", "I must prevent thee, Cimber", - 10, - 10, 0, 10, 10, 0))
 end
 
 function setup()
@@ -92,5 +91,5 @@ function love.draw()
   end
   -- draw text
   lg.setColor(0, 0, 0)
-  events[cur]:Draw()
+  events[cur]:draw()
 end
