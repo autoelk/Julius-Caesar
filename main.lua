@@ -18,19 +18,19 @@ function love.load()
   setup()
   gamestate = "start"
   cur = 1
-  length = 3 + 19
   events = {}
   -- Menu Events
   table.insert(events, Event:new("Julius Caesar", "by Luke Tao", "Play", "Quit", 0, 0, 0, 0, 0, 0))
   table.insert(events, Event:new("Game Over", "", "Retry", "Quit", 0, 0, 0, 0, 0, 0))
   table.insert(events, Event:new("You Win", "Thanks for playing", "Replay", "Quit", 0, 0, 0, 0, 0, 0))
   -- Rise of Caesar
-  table.insert(events, Event:new( "Pompey & Crassus", "Would you like to join the First Triumvirate", "Yes", "No", 0, 10, - 10, 0, - 10, 10))
+  table.insert(events, Event:new( "Pompey & Crassus", "We can make you consul if you promise to pass all of our laws", "Accept", "Refuse", 0, 10, - 10, 0, - 10, 10))
   table.insert(events, Event:new( "", "Redistribute land to the poor?", "Yes", "No", 10, 0, 10, - 10, 0, - 10))
   table.insert(events, Event:new( "", "Invade Gaul?", "Yes", "No", 10, 10, 10, - 10, - 10, - 10))
   table.insert(events, Event:new( "", "Pillage?", "Yes", "No", - 10, 0, 10, 10, 0, - 10))
   table.insert(events, Event:new( "Pompey", "Disband your army and return to Rome", "Obey", "cross the Rubicon", - 10, - 50, 0, 10, 10, 0))
   table.insert(events, Event:new( "", "Pursue Pompey to Egypt", "Yes", "No", 10, 10, - 10, - 10, - 10, 10))
+  table.insert(events, Event:new( "", "Pardon everyone?", "Yes", "No", 10, 10, 0, - 10, - 10, 0))
   table.insert(events, Event:new( "", "Become Dictator Perpetuus", "Yes", "No", 10, 10, 10, - 10, - 10, - 10))
   table.insert(events, Event:new( "", "Name Quintilis after yourself", "Add July to the Calendar", "No", - 10, 0, 0, - 10, 0, 0))
   table.insert(events, Event:new( "", "Reform the tax system", "Yes", "No", 10, 0, - 10, - 10, 0, 10))
@@ -45,6 +45,7 @@ function love.load()
   table.insert(events, Event:new( "Artemidorus", "\"Delay not, Caesar; read [this document] instantly\"(3.1.33).", "Accept", "\"What, is the fellow mad?\"(3.1.33).", - 10, - 10, - 10, 10, 0, 0))
   table.insert(events, Event:new( "Caesar", "\"What is now amiss\nThat Caesar and his Senate must redress?\"(3.1.34).", "Continue", "Continue", 0, 0, 0, 0, 0, 0))
   table.insert(events, Event:new( "Metellus Cimber", "\"For the repealing of my banish'd brother?\"(3.1.34).", "\"Caesar allows his repeal\"(3.1.34).", "I must prevent thee, Cimber", - 10, - 10, 0, 10, 10, 0))
+  length = table.getn(events)
 end
 
 function setup()
