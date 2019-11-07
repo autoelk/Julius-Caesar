@@ -70,7 +70,7 @@ function check()
   if pop == 0 or pow == 0 or mon == 0 then
     gamestate = "start"
     cur = 2
-    events[2].q = "Caesar fades to obsurity"
+    events[2].q = "Caesar fades to obscurity"
   end
 end
 
