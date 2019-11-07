@@ -53,6 +53,10 @@ function Event:Choose(choice)
       love.event.quit()
     end
   end
+  check()
+end
+
+function check()
   -- check gamestate
   if cur > length then
     gamestate = "win"
